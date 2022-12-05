@@ -1,0 +1,64 @@
+MongoDB
+
+--------------------------------------------------------------------------------
+¿Que es MongoDB?
+
+- No se almacenan documentos como tal sino que lo podemos ver como objetos JSON Javascript
+donde podemos almacenar la n cantidad de atributos que queramos y podemos almacernar, enteros,
+strings, flotantes, boleanos, fechas, listas e incluso otros documentos
+- El tamaño maximo de un documento sera de 16mb lo cual es muchisimo espacio
+- Una coleccion es un conjunto de documentos
+- Si un documento es una fila en analogia en una base de datos relacional, entonces podemos
+decir que una coleccion es en analogia una tabla
+
+--------------------------------------------------------------------------------
+Extras
+
+Para que MongoDB funcione tenemos que ir a C: y luego crear una carpeta llamada data y dentro de esa otra llamada db
+aunque podemos cambiar la ruta esa es la que tenemos por defecto
+
+--------------------------------------------------------------------------------
+Recomendaciones
+
+Es mejor poner la ruta C:\Program Files\MongoDB\Server\4.4\bin en las variables de entorno para poder ejecutar comandos
+desde nuestra terminal, por ejemplo:
+
+mongod --version: para ver la version
+mongod: es para correr el servidor, en caso de que se cierre es porque no hemos creado las carpetas data y db, este es
+nuestro servidor y espera que se conecte alguien como un programa en java, en python, etc.
+mongo: es para que nos conectemos al servidor tenieno en cuenta que es el cliente
+
+estos comandos por asi llamarlos son programas que se encuentran en la carpeta bin
+
+--------------------------------------------------------------------------------
+Crear documentos
+
+por default estaremos trabajando en la base de datos "test"
+
+show databases: ver bases de datos
+db.getName(): para saber en que base de datso estamos trabajando
+use "nombre de base de datos": indicamos la base de datos en la que trabajaremos
+show collections: saber que colecciones posee una base de datos
+
+crear documento nuevo, es decir un nuevo objeto JSON
+var user = {
+    name: 'Eduardo',
+    last_name: 'Garcia',
+    age: 26,
+    email: 'eduardo@codigofacilito.com'
+    }
+
+Aunque nos encontramos en la base de datos cursoMongoDB no se encuentra creada, esto se debe a que MongoDB es lazy por default
+donde una coleccion no se crea hasta que esta posea por lo menos un documento y a su vez una base de datos no se crea hasta que
+esta posea al menos una coleccion
+
+db.users.insert("nombre de documento"): para crear coleccion
+
+si volvemos a ejecutar show collections y show databases podemos ver que se crea la coleccion y la base de datos
+
+db.users.find(): para saber que documentos almacena una coleccion
+
+--------------------------------------------------------------------------------
+Crear documentos 2
+
+En nuevar versiones de MongoDB tenemos otras 2 formas de insertar datos que reemplazan a insert, es mejor no usar insert
